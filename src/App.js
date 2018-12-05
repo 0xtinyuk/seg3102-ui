@@ -5,6 +5,7 @@ import Home from './components/Home'
 import About from './components/About'
 import UserProfile from './components/userprofile'
 import SignIn from './components/SignIn'
+import Property from './components/property'
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/signin' component={SignIn} />
           <Route path='/userprofile' component={UserProfile} />
-          <Route path='/property' component={UserProfile} />
+          <Route path='/property' component={Property} />
           <Route path='/images' component={UserProfile} />
           <Route path='/view' component={UserProfile} />
           <Route path='/rental' component={UserProfile} />

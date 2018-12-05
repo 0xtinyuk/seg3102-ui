@@ -42,10 +42,16 @@ class TextFields extends React.Component {
     const { classes } = this.props;
 
     return (
+
+    <div>
+      <div className="container">
+        <h4 className="center">Fill out form to create Property Listing</h4>
+
+
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-city"
-          label="city"
+          label="City"
           className={classes.textField}
           value={this.state.city}
           onChange={this.handleChange('city')}
@@ -53,7 +59,7 @@ class TextFields extends React.Component {
         />
         <TextField
           id="standard-province"
-          label="province"
+          label="Province"
           className={classes.textField}
           value={this.state.province}
           onChange={this.handleChange('province')}
@@ -62,7 +68,7 @@ class TextFields extends React.Component {
 
         <TextField
           id="standard-addr1"
-          label="addr1"
+          label="Address 1"
           className={classes.textField}
           value={this.state.addr1}
           onChange={this.handleChange('addr1')}
@@ -71,7 +77,7 @@ class TextFields extends React.Component {
 
         <TextField
           id="standard-addr2"
-          label="addr2"
+          label="Address 2"
           className={classes.textField}
           value={this.state.addr2}
           onChange={this.handleChange('addr2')}
@@ -80,7 +86,7 @@ class TextFields extends React.Component {
 
         <TextField
           id="standard-askrent"
-          label="askrent"
+          label="Rent Price"
           value={this.state.askrent}
           onChange={this.handleChange('askrent')}
           type="number"
@@ -97,6 +103,9 @@ class TextFields extends React.Component {
       </Button>
 
       </form>
+
+      </div>
+    </div>
     );
   }
 }
