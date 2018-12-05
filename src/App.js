@@ -12,12 +12,12 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Route exact path='/' component={Home}/>
-          <Route path='/SignIn' component={About} />
-          <Route path='/UserProfile' component={Contact} />
-          <Route path='/Property' component={Contact} />
-          <Route path='/Images' component={Contact} />
-          <Route path='/View' component={Contact} />
-          <Route path='/Rental' component={Contact} />
+          <Route path='/signin' component={About} />
+          <Route path='/userprofile' component={Contact} />
+          <Route path='/property' component={Contact} />
+          <Route path='/images' component={Contact} />
+          <Route path='/view' component={Contact} />
+          <Route path='/rental' component={Contact} />
         </div>
       </BrowserRouter>
     );
