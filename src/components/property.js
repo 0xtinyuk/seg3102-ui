@@ -42,77 +42,61 @@ class TextFields extends React.Component {
     const { classes } = this.props;
 
     return (
-
-    <div>
-      <div className="container">
-        <h4 className="center">Fill out form to create Customer Account</h4>
-
-         <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="standard-name"
-          label="Name"
+          id="standard-city"
+          label="city"
           className={classes.textField}
-          value={this.state.name}
-          onChange={this.handleChange('name')}
+          value={this.state.city}
+          onChange={this.handleChange('city')}
           margin="normal"
         />
         <TextField
-          id="standard-lastname"
-          label="Last Name"
+          id="standard-province"
+          label="province"
           className={classes.textField}
-          value={this.state.lastname}
-          onChange={this.handleChange('lastname')}
+          value={this.state.province}
+          onChange={this.handleChange('province')}
           margin="normal"
         />
 
         <TextField
-          id="standard-username"
-          label="Username"
+          id="standard-addr1"
+          label="addr1"
           className={classes.textField}
-          value={this.state.username}
-          onChange={this.handleChange('username')}
-          margin="normal"
-        />
-        <TextField
-          id="standard-password-input"
-          label="Password"
-          className={classes.textField}
-          type="password"
-          autoComplete="current-password"
+          value={this.state.addr1}
+          onChange={this.handleChange('addr1')}
           margin="normal"
         />
 
-
         <TextField
-          id="email"
-          label="Email"
+          id="standard-addr2"
+          label="addr2"
           className={classes.textField}
-          value={this.state.email}
-          onChange={this.handleChange('email')}
+          value={this.state.addr2}
+          onChange={this.handleChange('addr2')}
           margin="normal"
         />
+
         <TextField
-          id="date"
-          label="Birthday"
-          type="date"
-          defaultValue="2017-05-24"
+          id="standard-askrent"
+          label="askrent"
+          value={this.state.askrent}
+          onChange={this.handleChange('askrent')}
+          type="number"
           className={classes.textField}
           InputLabelProps={{
-          shrink: true,
-        }}
-      />
+            shrink: true,
+          }}
+          margin="normal"
+        />
 
       <Button variant="contained" size="small" className={classes.button}>
         <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>
+
       </form>
-
-      </div>
-    </div>
-
-
-     
     );
   }
 }
