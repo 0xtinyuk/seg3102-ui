@@ -42,7 +42,13 @@ class TextFields extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
+
+    <div>
+      <div className="container">
+        <h4 className="center">Home</h4>
+        <p>hi</p>
+
+         <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-name"
           label="Name"
@@ -102,6 +108,12 @@ class TextFields extends React.Component {
         Save
       </Button>
       </form>
+      
+      </div>
+    </div>
+
+
+     
     );
   }
 }
