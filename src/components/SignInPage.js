@@ -5,9 +5,11 @@ import SignIn from "./SignIn";
 export default class extends Component {
   render() {
     return (
-      <main className="force-col">
-        <SignIn />
-      </main>
+      <div>
+        <div className="container">
+          <h4 className="center">About</h4>
+        </div>
+      </div>
     );
   }
 }
