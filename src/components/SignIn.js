@@ -63,7 +63,6 @@ class SignIn extends React.Component {
     return fetch("/login", {
       method: "PUT",
       headers: {
-        //Accept: 'application/json',
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
