@@ -4,6 +4,7 @@ import { Route, BrowserRouter } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
 import UserProfile from './components/userprofile'
+import SignIn from './components/SignIn'
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Route exact path='/' component={Home}/>
-          <Route path='/signin' component={About} />
+          <Route path='/signin' component={SignIn} />
           <Route path='/userprofile' component={UserProfile} />
           <Route path='/property' component={UserProfile} />
           <Route path='/images' component={UserProfile} />
