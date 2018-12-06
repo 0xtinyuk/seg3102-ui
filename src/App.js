@@ -1,30 +1,44 @@
-import React, { Component } from 'react';
-import Navbar from './components/Navbar'
-import { Route, BrowserRouter } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import UserProfile from './components/userprofile'
-import SignIn from './components/SignIn'
-import Property from './components/property'
-import Rental from './components/rental'
+import React, { Component } from "react";
+import Navbar from "./components/Navbar";
+import { Route, BrowserRouter, Redirect } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import UserProfile from "./components/userprofile";
+import SignIn from "./components/SignIn";
+import Property from "./components/property";
 
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <Navbar />
-          <Route exact path='/' component={Home}/>
-          <Route path='/signin' component={SignIn} />
-          <Route path='/userprofile' component={UserProfile} />
-          <Route path='/property' component={Property} />
-          <Route path='/images' component={UserProfile} />
-          <Route path='/view' component={UserProfile} />
-          <Route path='/rental' component={Rental} />
-        </div>
-      </BrowserRouter>
-    );
+const checkAuth = () => {
+  const token = localStorage.getItem("session_token");
+  if (!token) {
+    return false;
   }
-}
+  return true;
+};
 
-export default App;
+const AuthRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      checkAuth() ? (
+        <Redirect to={{ pathname: "/SignOut" }} />
+      ) : (
+        <Component {...props} />
+      )
+    }
+  />
+);
+
+export default () => (
+  <BrowserRouter>
+    <div className="App">
+      <Navbar />
+      <Route exact path="/" component={Home} />
+      <AuthRoute path="/signin" component={SignIn} />
+      <Route path="/userprofile" component={UserProfile} />
+      <Route path="/property" component={Property} />
+      <Route path="/images" component={UserProfile} />
+      <Route path="/view" component={UserProfile} />
+      <Route path="/rental" component={UserProfile} />
+    </div>
+  </BrowserRouter>
+);
