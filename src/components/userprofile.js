@@ -33,7 +33,7 @@ class TextFields extends React.Component {
       last_name: "",
       username: "",
       password: "",
-      dob: "",
+      dob: "2017-05-24",
       email: "",
       account_id: localStorage.getItem("account_id"),
       account_type: localStorage.getItem("account_type"),
@@ -42,11 +42,12 @@ class TextFields extends React.Component {
   }
 
   profilecreate(first_name, last_name, username, password, dob, email) {
-    var token = localStorage.getItem("session.token");
+    var token = localStorage.getItem("session_token");
     return fetch("/customer", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-TOKEN": token
       },
       body: JSON.stringify({
         first_name,
@@ -65,29 +66,24 @@ class TextFields extends React.Component {
         }
       })
       .then(responseJson => {
-        this.setState({
-          account_id: responseJson.account_id,
-          account_type: responseJson.account_type,
-          session_token: responseJson.session_token
-        });
-        localStorage.setItem("account_id", responseJson.account_id);
-        localStorage.setItem("account_type", responseJson.account_type);
-        localStorage.setItem("session_token", responseJson.session_token);
+        alert("Success");
       })
       .catch(function(err) {
-        alert("ERROR IN LOGIN");
+        alert("ERROR");
         console.log("ERROR IN REQUEST", err);
       });
   }
 
-  state = {
-    name: ""
-  };
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
+  submitForm = e => {
+    e.preventDefault(); //this stops the page from redireting when you hit submit
+    this.profilecreate(
+      this.state.first_name,
+      this.state.last_name,
+      this.state.username,
+      this.state.password,
+      this.state.dob,
+      this.state.email
+    );
   };
 
   render() {
@@ -98,63 +94,56 @@ class TextFields extends React.Component {
         <div className="container">
           <h4 className="center">Fill out form to create Customer Account</h4>
           <form
-            className={classes.container}
             onSubmit={e => {
               this.submitForm(e);
             }}
-            noValidate
             autoComplete="off"
           >
             <TextField
-              
               id="standard-name"
-              label="Name"
+              label="First Name"
               className={classes.textField}
-              value={this.state.first_name}
-              onChange={this.handleChange("first_name")}
+              //value={this.state.first_name}
+              onChange={e => this.setState({ first_name: e.target.value })}
               margin="normal"
             />
             <TextField
-              
               id="standard-lastname"
               label="Last Name"
               className={classes.textField}
-              value={this.state.lastname}
-              onChange={this.handleChange("last_name")}
+              //value={this.state.last_name}
+              onChange={e => this.setState({ last_name: e.target.value })}
               margin="normal"
             />
 
             <TextField
-              
               id="standard-username"
               label="Username"
               className={classes.textField}
-              value={this.state.username}
-              onChange={this.handleChange("username")}
+              //value={this.state.username}
+              onChange={e => this.setState({ username: e.target.value })}
               margin="normal"
             />
             <TextField
-              
               id="standard-password"
               label="Password"
               className={classes.textField}
               type="password"
               autoComplete="current-password"
               margin="normal"
+              onChange={e => this.setState({ password: e.target.value })}
             />
 
             <TextField
-              
               id="email"
               label="Email"
               className={classes.textField}
-              value={this.state.email}
-              onChange={this.handleChange("email")}
+              //value={this.state.email}
+              onChange={e => this.setState({ email: e.target.value })}
               margin="normal"
             />
 
             <TextField
-              
               id="birthdate"
               label="Birthday"
               type="date"
@@ -163,13 +152,15 @@ class TextFields extends React.Component {
               InputLabelProps={{
                 shrink: true
               }}
-              onChange={this.handleChange("dob")}
+              onChange={e => this.setState({ dob: e.target.value })}
             />
 
-            <Button variant="contained" size="small" className={classes.button} type="submit">
-              <SaveIcon
-                className={classNames(classes.leftIcon, classes.iconSmall)}
-              />
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.submit}
+              type="submit"
+            >
               Create
             </Button>
           </form>

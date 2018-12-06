@@ -4,12 +4,6 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import MenuItem from "@material-ui/core/MenuItem";
-import TextField from "@material-ui/core/TextField";
-import SaveIcon from "@material-ui/icons/Save";
-import Button from "@material-ui/core/Button";
 
 class UploadImage extends React.Component {
   constructor(props) {
