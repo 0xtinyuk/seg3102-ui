@@ -1,8 +1,28 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import SaveIcon from "@material-ui/icons/Save";
+import Button from "@material-ui/core/Button";
 
 class UploadImage extends React.Component {
-  logout() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      propertyid: "",
+      account_id: localStorage.getItem("account_id"),
+      account_type: localStorage.getItem("account_type"),
+      session_token: localStorage.getItem("session_token")
+    };
+  }
+
+  upload() {
     var token = localStorage.getItem("session.token");
     localStorage.setItem("account_id", "");
     localStorage.setItem("account_type", "");
@@ -36,22 +56,31 @@ class UploadImage extends React.Component {
     this.logout();
   };
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <div className="container">
-          <h4 className="center">Home</h4>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={e => {
-              this.submitButton(e);
+          <h4 className="center">Upload Image</h4>
+          <form
+            noValidate
+            autoComplete="off"
+            onSubmit={e => {
+              this.submitForm(e);
             }}
-            //className={classes.submit}
           >
-            Sign Out
-          </Button>
+            <TextField
+              id="propertyid"
+              label="Property ID"
+              className={classes.textField}
+              value={this.state.propertyid}
+              onChange={e => this.setState({ password: e.target.value })}
+              margin="normal"
+            />
+
+            <Button variant="contained" size="small" className={classes.button}>
+              Upload
+            </Button>
+          </form>
         </div>
       </div>
     );
