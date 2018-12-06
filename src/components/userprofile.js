@@ -39,7 +39,7 @@ constructor(props) {
       account_type: localStorage.getItem("account_type"),
       session_token: localStorage.getItem("session_token")
     };
-
+}
 
  profilecreate(name, lastname, username, password, email, birthdate) {
     var token = localStorage.getItem("session.token");
@@ -49,7 +49,7 @@ constructor(props) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        standard-name, standard-lastname, standard-username, standard-password, email, birthdate
+        first_name, last_name, username, password, dob, email
         
       })
     })
@@ -151,7 +151,7 @@ class TextFields extends React.Component {
           onChange={this.handleChange('email')}
           margin="normal"
         />
-        
+
         <TextField
         onChange={e => this.setState({ dob: e.target.value })}
           id="birthdate"
