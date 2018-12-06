@@ -39,6 +39,7 @@ class TextFields extends React.Component {
       account_type: localStorage.getItem("account_type"),
       session_token: localStorage.getItem("session_token")
     };
+  }
 
 
    propertycreate(city, province, addr1, addr2, rent) {
@@ -46,7 +47,7 @@ class TextFields extends React.Component {
     return fetch("/owner", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
         "X-TOKEN": token
       },
       body: JSON.stringify({
