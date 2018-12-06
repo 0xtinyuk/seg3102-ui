@@ -6,7 +6,7 @@ import UserProfile from "./components/userprofile";
 import SignIn from "./components/SignIn";
 import Property from "./components/property";
 import Rental from "./components/rental";
-
+import UploadImage from "./components/UploadImage";
 import SignOut from "./components/SignOut";
 
 const checkAuth = () => {
@@ -39,7 +39,7 @@ export default () => (
       <AuthRoute path="/signin" component={SignIn} />
       <Route path="/userprofile" component={UserProfile} />
       <Route path="/property" component={Property} />
-      <Route path="/uploadimages" component={UserProfile} />
+      <Route path="/uploadimage" component={UploadImage} />
       <Route path="/view" component={UserProfile} />
       <Route path="/rental" component={Rental} />
     </div>

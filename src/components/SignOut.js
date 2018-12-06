@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 
 class SignOut extends React.Component {
   logout() {
-    var token = localStorage.getItem("session.token");
+    var token = localStorage.getItem("session_token");
     localStorage.setItem("account_id", "");
     localStorage.setItem("account_type", "");
     localStorage.setItem("session_token", "");

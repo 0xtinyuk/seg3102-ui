@@ -20,7 +20,7 @@ const Navbar = () => {
             <Link to="/property">Property</Link>
           </li>
           <li>
-            <Link to="/uploadimages">Upload Images</Link>
+            <Link to="/uploadimage">Upload Images</Link>
           </li>
           <li>
             <Link to="/view">View Images</Link>
