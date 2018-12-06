@@ -5,7 +5,7 @@ const Home = () => {
     <div>
       <div className="container">
         <h4 className="center">Home</h4>
-        <p>Welcome to the WFHX system. Please navigate via the menu up top.</p>
+        <p>Welcome to the WFHX system. Please first sign in to be able to navigate via the menu up top.</p>
       </div>
     </div>
   )
