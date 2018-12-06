@@ -25,6 +25,41 @@ const styles = theme => ({
   },
 });
 
+ /*profilecreate(name, lastname, username, password, email, birthdate) {
+    return fetch("/login", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        standard-name, standard-lastname, standard-username, standard-password, email, birthdate
+        
+      })
+    })
+
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw `${response.status}, ${response.statusText}`;
+        }
+      })
+      .then(responseJson => {
+        this.setState({
+          account_id: responseJson.account_id,
+          account_type: responseJson.account_type,
+          session_token: responseJson.session_token
+        });
+        localStorage.setItem("account_id", responseJson.account_id);
+        localStorage.setItem("account_type", responseJson.account_type);
+        localStorage.setItem("session_token", responseJson.session_token);
+      })
+      .catch(function(err) {
+        alert("ERROR IN LOGIN");
+        console.log("ERROR IN REQUEST", err);
+      });
+  } */
+
 
 class TextFields extends React.Component {
   state = {
@@ -74,7 +109,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
-          id="standard-password-input"
+          id="standard-password"
           label="Password"
           className={classes.textField}
           type="password"
@@ -92,7 +127,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
-          id="date"
+          id="birthdate"
           label="Birthday"
           type="date"
           defaultValue="2017-05-24"
