@@ -76,13 +76,12 @@ class TextFields extends React.Component {
 
   submitForm = e => {
     e.preventDefault(); //this stops the page from redireting when you hit submit
-    this.profilecreate(
-      this.state.first_name,
-      this.state.last_name,
-      this.state.username,
-      this.state.password,
-      this.state.dob,
-      this.state.email
+    this.propertycreate(
+      this.state.city,
+      this.state.province,
+      this.state.addr1,
+      this.state.addr2,
+      this.state.rent,
     );
   };
 

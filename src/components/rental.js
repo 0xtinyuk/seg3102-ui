@@ -27,15 +27,62 @@ const styles = theme => ({
 
 
 class TextFields extends React.Component {
-  state = {
-    name: '',
+   constructor(props) {
+    super(props);
+    this.state = {
+      customer: "",
+      property: "",
+      amount: "",
+      start: "",
+      end: "",
+      account_id: localStorage.getItem("account_id"),
+      account_type: localStorage.getItem("account_type"),
+      session_token: localStorage.getItem("session_token")
+    };
+  }
 
-  };
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+   rentalcreate(city, province, addr1, addr2, rent) {
+    var token = localStorage.getItem("session_token");
+    return fetch("/rental", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-TOKEN": token
+      },
+      body: JSON.stringify({
+        customer,
+        property,
+        amount,
+        start,
+        end,
+      })
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw `${response.status}, ${response.statusText}`;
+        }
+      })
+      .then(responseJson => {
+        alert("Success");
+      })
+      .catch(function(err) {
+        alert("ERROR");
+        console.log("ERROR IN REQUEST", err);
+      });
+  }
+
+  submitForm = e => {
+    e.preventDefault(); //this stops the page from redireting when you hit submit
+    this.rentalcreate(
+      this.state.customer,
+      this.state.property,
+      this.state.amount,
+      this.state.start,
+      this.state.end,
+    );
   };
 
   render() {
@@ -48,13 +95,18 @@ class TextFields extends React.Component {
       <div className="container">
         <h4 className="center">Rental Agreement</h4>
 
-      <form className={classes.container} noValidate autoComplete="off">
+      <form 
+            onSubmit={e => {
+              this.submitForm(e);
+                        }}
+            autoComplete="off"
+      >
         <TextField
           id="standard-customerid"
           label="Customer"
           className={classes.textField}
           value={this.state.customerid}
-          onChange={this.handleChange('customerid')}
+          onChange={e => this.setState({ customer: e.target.value })}
           margin="normal"
         />
         <TextField
@@ -62,7 +114,7 @@ class TextFields extends React.Component {
           label="Property ID"
           className={classes.textField}
           value={this.state.propertyid}
-          onChange={this.handleChange('propertyid')}
+          onChange={e => this.setState({ property: e.target.value })}
           margin="normal"
         />
 
@@ -70,7 +122,7 @@ class TextFields extends React.Component {
           id="standard-rent"
           label="Rent"
           value={this.state.rent}
-          onChange={this.handleChange('rent')}
+          onChange={e => this.setState({ rent: e.target.value })}
           type="number"
           className={classes.textField}
           InputLabelProps={{
@@ -87,7 +139,8 @@ class TextFields extends React.Component {
           className={classes.textField}
           InputLabelProps={{
           shrink: true,
-        }}
+                  }}
+          onChange={e => this.setState({ start: e.target.value })}
       />
 
         <TextField
@@ -98,10 +151,16 @@ class TextFields extends React.Component {
           className={classes.textField}
           InputLabelProps={{
           shrink: true,
-        }}
+                  }}
+          onChange={e => this.setState({ end: e.target.value })}
       />
 
-      <Button variant="contained" size="small" className={classes.button}>
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.submit}
+              type="submit"
+            >
         <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>
