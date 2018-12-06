@@ -88,7 +88,7 @@ class SignIn extends React.Component {
         localStorage.setItem("session_token", responseJson.session_token);
         setTimeout(() => {
           this.props.history.push("/SignIn");
-        }, 2000);
+        }, 1000);
       })
       .catch(function(err) {
         alert("ERROR IN LOGIN");
