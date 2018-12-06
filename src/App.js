@@ -6,6 +6,7 @@ import About from "./components/About";
 import UserProfile from "./components/userprofile";
 import SignIn from "./components/SignIn";
 import Property from "./components/property";
+import SignOut from "./components/SignOut";
 
 const checkAuth = () => {
   const token = localStorage.getItem("session_token");
@@ -33,6 +34,7 @@ export default () => (
     <div className="App">
       <Navbar />
       <Route exact path="/" component={Home} />
+      <Route path="/SignOut" component={SignOut} />
       <AuthRoute path="/signin" component={SignIn} />
       <Route path="/userprofile" component={UserProfile} />
       <Route path="/property" component={Property} />

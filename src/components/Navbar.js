@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from "react-router-dom/Link"
+import React from "react";
+import Link from "react-router-dom/Link";
 
 const Navbar = () => {
   return (
@@ -7,17 +7,31 @@ const Navbar = () => {
       <div className="container">
         <a className="brand-logo">WFHX Systems</a>
         <ul className="right">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to='/signin'>Sign In</Link></li>
-          <li><Link to='/userprofile'>User Profile</Link></li> 
-          <li><Link to='/property'>Property</Link></li>
-          <li><Link to='/images'>Upload Images</Link></li>
-          <li><Link to='/view'>View Images</Link></li>
-          <li><Link to='/rental'>Rental</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/signin">Account</Link>
+          </li>
+          <li>
+            <Link to="/userprofile">User Profile</Link>
+          </li>
+          <li>
+            <Link to="/property">Property</Link>
+          </li>
+          <li>
+            <Link to="/images">Upload Images</Link>
+          </li>
+          <li>
+            <Link to="/view">View Images</Link>
+          </li>
+          <li>
+            <Link to="/rental">Rental</Link>
+          </li>
         </ul>
       </div>
-    </nav> 
-  )
-}
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
