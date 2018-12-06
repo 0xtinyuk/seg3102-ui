@@ -25,9 +25,12 @@ const styles = theme => ({
   },
 });
 
- /*profilecreate(name, lastname, username, password, email, birthdate) {
-    return fetch("/login", {
-      method: "PUT",
+
+
+ profilecreate(name, lastname, username, password, email, birthdate) {
+    var token = localStorage.getItem("session.token");
+    return fetch("/customer", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
@@ -58,7 +61,7 @@ const styles = theme => ({
         alert("ERROR IN LOGIN");
         console.log("ERROR IN REQUEST", err);
       });
-  } */
+  }
 
 
 class TextFields extends React.Component {
@@ -82,8 +85,12 @@ class TextFields extends React.Component {
       <div className="container">
         <h4 className="center">Fill out form to create Customer Account</h4>
 
+        onSubmit={e => {
+        this.submitForm(e);
+
          <form className={classes.container} noValidate autoComplete="off">
         <TextField
+        onChange={e => this.setState({ first_name: e.target.value })}
           id="standard-name"
           label="Name"
           className={classes.textField}
@@ -92,6 +99,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+        onChange={e => this.setState({ last_name: e.target.value })}
           id="standard-lastname"
           label="Last Name"
           className={classes.textField}
@@ -101,6 +109,7 @@ class TextFields extends React.Component {
         />
 
         <TextField
+        onChange={e => this.setState({ username: e.target.value })}
           id="standard-username"
           label="Username"
           className={classes.textField}
@@ -109,6 +118,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+        onChange={e => this.setState({ password: e.target.value })}
           id="standard-password"
           label="Password"
           className={classes.textField}
@@ -119,6 +129,7 @@ class TextFields extends React.Component {
 
 
         <TextField
+        onChange={e => this.setState({ email: e.target.value })}
           id="email"
           label="Email"
           className={classes.textField}
@@ -127,6 +138,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+        onChange={e => this.setState({ dob: e.target.value })}
           id="birthdate"
           label="Birthday"
           type="date"
