@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import UserProfile from "./components/userprofile";
 import SignIn from "./components/SignIn";
 import Property from "./components/property";
-import UploadImage from "./components/UploadImage";
 import Rental from "./components/rental";
 
 import SignOut from "./components/SignOut";
@@ -40,7 +39,7 @@ export default () => (
       <AuthRoute path="/signin" component={SignIn} />
       <Route path="/userprofile" component={UserProfile} />
       <Route path="/property" component={Property} />
-      <Route path="/uploadimages" component={UploadImage} />
+      <Route path="/uploadimages" component={UserProfile} />
       <Route path="/view" component={UserProfile} />
       <Route path="/rental" component={Rental} />
     </div>

@@ -130,6 +130,7 @@ class TextFields extends React.Component {
               label="Username"
               className={classes.textField}
               value={this.state.username}
+              onChange={this.handleChange("username")}
               margin="normal"
             />
             <TextField
@@ -165,11 +166,11 @@ class TextFields extends React.Component {
               onChange={this.handleChange("dob")}
             />
 
-            <Button variant="contained" size="small" className={classes.button}>
+            <Button variant="contained" size="small" className={classes.button} type="submit">
               <SaveIcon
                 className={classNames(classes.leftIcon, classes.iconSmall)}
               />
-              Save
+              Create
             </Button>
           </form>
         </div>
