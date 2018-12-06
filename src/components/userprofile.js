@@ -26,6 +26,20 @@ const styles = theme => ({
 });
 
 
+constructor(props) {
+    super(props);
+    this.state = {
+      first_name: "",
+      last_name: "",
+      username: "",
+      password: "",
+      dob: "",
+      email: "",
+      account_id: localStorage.getItem("account_id"),
+      account_type: localStorage.getItem("account_type"),
+      session_token: localStorage.getItem("session_token")
+    };
+
 
  profilecreate(name, lastname, username, password, email, birthdate) {
     var token = localStorage.getItem("session.token");
@@ -137,6 +151,7 @@ class TextFields extends React.Component {
           onChange={this.handleChange('email')}
           margin="normal"
         />
+        
         <TextField
         onChange={e => this.setState({ dob: e.target.value })}
           id="birthdate"
