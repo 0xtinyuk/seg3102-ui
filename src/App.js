@@ -6,6 +6,7 @@ import About from './components/About'
 import UserProfile from './components/userprofile'
 import SignIn from './components/SignIn'
 import Property from './components/property'
+import Rental from './components/rental'
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
           <Route path='/property' component={Property} />
           <Route path='/images' component={UserProfile} />
           <Route path='/view' component={UserProfile} />
-          <Route path='/rental' component={UserProfile} />
+          <Route path='/rental' component={Rental} />
         </div>
       </BrowserRouter>
     );
