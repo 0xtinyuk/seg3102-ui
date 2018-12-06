@@ -33,8 +33,8 @@ class TextFields extends React.Component {
       customer: "",
       property: "",
       amount: "",
-      start: "",
-      end: "",
+      start: "2017-05-24",
+      end: "2017-05-24",
       account_id: localStorage.getItem("account_id"),
       account_type: localStorage.getItem("account_type"),
       session_token: localStorage.getItem("session_token")
@@ -105,7 +105,7 @@ class TextFields extends React.Component {
           id="standard-customerid"
           label="Customer"
           className={classes.textField}
-          value={this.state.customerid}
+          value={this.state.customer}
           onChange={e => this.setState({ customer: e.target.value })}
           margin="normal"
         />
@@ -113,7 +113,7 @@ class TextFields extends React.Component {
           id="standard-propertyid"
           label="Property ID"
           className={classes.textField}
-          value={this.state.propertyid}
+          value={this.state.property}
           onChange={e => this.setState({ property: e.target.value })}
           margin="normal"
         />
