@@ -27,9 +27,61 @@ const styles = theme => ({
 
 
 class TextFields extends React.Component {
-  state = {
-    name: '',
+   constructor(props) {
+    super(props);
+    this.state = {
+      city: "",
+      province: "",
+      addr1: "",
+      addr2: "",
+      dob: "",
+      email: "",
+      account_id: localStorage.getItem("account_id"),
+      account_type: localStorage.getItem("account_type"),
+      session_token: localStorage.getItem("session_token")
+    };
 
+
+   propertycreate(city, province, addr1, addr2, rent) {
+    var token = localStorage.getItem("session_token");
+    return fetch("/owner", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        city,
+        province,
+        addr1,
+        addr2,
+        rent,
+      })
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw `${response.status}, ${response.statusText}`;
+        }
+      })
+      .then(responseJson => {
+        this.setState({
+          account_id: responseJson.account_id,
+          account_type: responseJson.account_type,
+          session_token: responseJson.session_token
+        });
+        localStorage.setItem("account_id", responseJson.account_id);
+        localStorage.setItem("account_type", responseJson.account_type);
+        localStorage.setItem("session_token", responseJson.session_token);
+      })
+      .catch(function(err) {
+        alert("ERROR IN LOGIN");
+        console.log("ERROR IN REQUEST", err);
+      });
+  }
+
+    state = {
+    name: ""
   };
 
   handleChange = name => event => {
@@ -48,13 +100,19 @@ class TextFields extends React.Component {
         <h4 className="center">Fill out form to create Property Listing</h4>
 
 
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} 
+            onSubmit={e => {
+              this.submitForm(e);
+                        }}
+            noValidate
+            autoComplete="off"
+      >
         <TextField
           id="standard-city"
           label="City"
           className={classes.textField}
           value={this.state.city}
-          onChange={this.handleChange('city')}
+          onChange={e => this.setState({ city: e.target.value })}
           margin="normal"
         />
         <TextField
@@ -62,7 +120,7 @@ class TextFields extends React.Component {
           label="Province"
           className={classes.textField}
           value={this.state.province}
-          onChange={this.handleChange('province')}
+          onChange={e => this.setState({ pronvince: e.target.value })}
           margin="normal"
         />
 
@@ -71,7 +129,7 @@ class TextFields extends React.Component {
           label="Address 1"
           className={classes.textField}
           value={this.state.addr1}
-          onChange={this.handleChange('addr1')}
+          onChange={e => this.setState({ addr1: e.target.value })}
           margin="normal"
         />
 
@@ -80,7 +138,7 @@ class TextFields extends React.Component {
           label="Address 2"
           className={classes.textField}
           value={this.state.addr2}
-          onChange={this.handleChange('addr2')}
+          onChange={e => this.setState({ addr2: e.target.value })}
           margin="normal"
         />
 
@@ -88,7 +146,7 @@ class TextFields extends React.Component {
           id="standard-askrent"
           label="Rent Price"
           value={this.state.askrent}
-          onChange={this.handleChange('askrent')}
+          onChange={e => this.setState({ rent: e.target.value })}
           type="number"
           className={classes.textField}
           InputLabelProps={{
@@ -97,7 +155,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
 
-      <Button variant="contained" size="small" className={classes.button}>
+      <Button variant="contained" size="small" className={classes.button} type= 'submit'>
         <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>
