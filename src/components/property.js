@@ -1,33 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import SaveIcon from '@material-ui/icons/Save';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import SaveIcon from "@material-ui/icons/Save";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 200
   },
   dense: {
-    marginTop: 19,
+    marginTop: 19
   },
   menu: {
-    width: 200,
-  },
+    width: 200
+  }
 });
 
-
 class TextFields extends React.Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       city: "",
@@ -41,8 +40,7 @@ class TextFields extends React.Component {
     };
   }
 
-
-   propertycreate(city, province, addr1, addr2, rent) {
+  propertycreate(city, province, addr1, addr2, rent) {
     var token = localStorage.getItem("session_token");
     return fetch("/owner", {
       method: "POST",
@@ -55,7 +53,7 @@ class TextFields extends React.Component {
         province,
         addr1,
         addr2,
-        rent,
+        rent
       })
     })
       .then(response => {
@@ -81,90 +79,92 @@ class TextFields extends React.Component {
       this.state.province,
       this.state.addr1,
       this.state.addr2,
-      this.state.rent,
+      this.state.rent
     );
   };
-
 
   render() {
     const { classes } = this.props;
 
     return (
+      <div>
+        <div className="container">
+          <h4 className="center">Fill out form to create Property Listing</h4>
 
-    <div>
-      <div className="container">
-        <h4 className="center">Fill out form to create Property Listing</h4>
-
-
-      <form 
+          <form
             onSubmit={e => {
               this.submitForm(e);
-                        }}
+            }}
             autoComplete="off"
-      >
-        <TextField
-          id="standard-city"
-          label="City"
-          className={classes.textField}
-          //value={this.state.city}
-          onChange={e => this.setState({ city: e.target.value })}
-          margin="normal"
-        />
-        <TextField
-          id="standard-province"
-          label="Province"
-          className={classes.textField}
-          //value={this.state.province}
-          onChange={e => this.setState({ pronvince: e.target.value })}
-          margin="normal"
-        />
+          >
+            <TextField
+              id="standard-city"
+              label="City"
+              className={classes.textField}
+              //value={this.state.city}
+              onChange={e => this.setState({ city: e.target.value })}
+              margin="normal"
+            />
+            <TextField
+              id="standard-province"
+              label="Province"
+              className={classes.textField}
+              //value={this.state.province}
+              onChange={e => this.setState({ pronvince: e.target.value })}
+              margin="normal"
+            />
 
-        <TextField
-          id="standard-addr1"
-          label="Address 1"
-          className={classes.textField}
-          //value={this.state.addr1}
-          onChange={e => this.setState({ addr1: e.target.value })}
-          margin="normal"
-        />
+            <TextField
+              id="standard-addr1"
+              label="Address 1"
+              className={classes.textField}
+              //value={this.state.addr1}
+              onChange={e => this.setState({ addr1: e.target.value })}
+              margin="normal"
+            />
 
-        <TextField
-          id="standard-addr2"
-          label="Address 2"
-          className={classes.textField}
-          //value={this.state.addr2}
-          onChange={e => this.setState({ addr2: e.target.value })}
-          margin="normal"
-        />
+            <TextField
+              id="standard-addr2"
+              label="Address 2"
+              className={classes.textField}
+              //value={this.state.addr2}
+              onChange={e => this.setState({ addr2: e.target.value })}
+              margin="normal"
+            />
 
-        <TextField
-          id="standard-askrent"
-          label="Rent Price"
-          //value={this.state.askrent}
-          onChange={e => this.setState({ rent: e.target.value })}
-          type="number"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-        />
+            <TextField
+              id="standard-askrent"
+              label="Rent Price"
+              //value={this.state.askrent}
+              onChange={e => this.setState({ rent: e.target.value })}
+              type="number"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true
+              }}
+              margin="normal"
+            />
 
-      <Button variant="contained" size="small" className={classes.button} type= 'submit'>
-        <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
-        Save
-      </Button>
-
-      </form>
-
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.button}
+              type="submit"
+            >
+              <SaveIcon
+                className={classNames(classes.leftIcon, classes.iconSmall)}
+              />
+              Save
+            </Button>
+          </form>
+        </div>
       </div>
-    </div>
     );
   }
 }
 
 TextFields.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(TextFields);
