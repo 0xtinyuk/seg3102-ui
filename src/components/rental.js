@@ -42,7 +42,7 @@ class TextFields extends React.Component {
   }
 
 
-   rentalcreate(city, province, addr1, addr2, rent) {
+   rentalcreate(customer, property, amount, start, end) {
     var token = localStorage.getItem("session_token");
     return fetch("/rental", {
       method: "POST",
