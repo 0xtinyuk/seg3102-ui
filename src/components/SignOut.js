@@ -22,7 +22,11 @@ class SignOut extends React.Component {
           throw `${response.status}, ${response.statusText}`;
         }
       })
-      .then(responseJson => {})
+      .then(responseJson => {
+        setTimeout(() => {
+          this.props.history.push("/SignIn");
+        }, 2000);
+      })
       .catch(function(err) {
         alert("You have logged out");
       });
