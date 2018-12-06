@@ -56,7 +56,7 @@ class UploadImage extends React.Component {
         console.log("ERROR IN REQUEST", err);
       });
   }
-  submitButton = e => {
+  submitForm = e => {
     e.preventDefault(); //this stops the page from redireting when you hit submit
     this.upload(this.state.propertyid, this.state.selectedFile);
   };
@@ -74,7 +74,7 @@ class UploadImage extends React.Component {
           >
             <input
               type="file"
-              onChange={e => this.setState({ selectedFile: e.target.files[0] })}
+              onChange={e => this.setState({ selectedFile: e.target.value })}
             />
             <TextField
               id="propertyid"
