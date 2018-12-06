@@ -1,35 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import SaveIcon from '@material-ui/icons/Save';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import SaveIcon from "@material-ui/icons/Save";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 200
   },
   dense: {
-    marginTop: 19,
+    marginTop: 19
   },
   menu: {
-    width: 200,
-  },
+    width: 200
+  }
 });
 
-
-
 class TextFields extends React.Component {
-
-constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       first_name: "",
@@ -42,9 +39,9 @@ constructor(props) {
       account_type: localStorage.getItem("account_type"),
       session_token: localStorage.getItem("session_token")
     };
-}
+  }
 
- profilecreate(name, lastname, username, password, email, birthdate) {
+  profilecreate(name, lastname, username, password, email, birthdate) {
     var token = localStorage.getItem("session.token");
     return fetch("/customer", {
       method: "POST",
@@ -52,11 +49,14 @@ constructor(props) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        first_name, last_name, username, password, dob, email
-        
+        first_name,
+        last_name,
+        username,
+        password,
+        dob,
+        email
       })
     })
-
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -81,13 +81,12 @@ constructor(props) {
   }
 
   state = {
-    name: '',
-
+    name: ""
   };
 
   handleChange = name => event => {
     this.setState({
-      [name]: event.target.value,
+      [name]: event.target.value
     });
   };
 
@@ -95,93 +94,91 @@ constructor(props) {
     const { classes } = this.props;
 
     return (
+      <div>
+        <div className="container">
+          <h4 className="center">Fill out form to create Customer Account</h4>
+          <form
+            className={classes.container}
+            onSubmit={e => {
+              this.submitForm(e);
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              onChange={e => this.setState({ first_name: e.target.value })}
+              id="standard-name"
+              label="Name"
+              className={classes.textField}
+              value={this.state.name}
+              onChange={this.handleChange("name")}
+              margin="normal"
+            />
+            <TextField
+              onChange={e => this.setState({ last_name: e.target.value })}
+              id="standard-lastname"
+              label="Last Name"
+              className={classes.textField}
+              value={this.state.lastname}
+              onChange={this.handleChange("lastname")}
+              margin="normal"
+            />
 
-    <div>
-      <div className="container">
-        <h4 className="center">Fill out form to create Customer Account</h4>
+            <TextField
+              onChange={e => this.setState({ username: e.target.value })}
+              id="standard-username"
+              label="Username"
+              className={classes.textField}
+              value={this.state.username}
+              margin="normal"
+            />
+            <TextField
+              onChange={e => this.setState({ password: e.target.value })}
+              id="standard-password"
+              label="Password"
+              className={classes.textField}
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
+            />
 
-        onSubmit={e => {
-        this.submitForm(e);
+            <TextField
+              onChange={e => this.setState({ email: e.target.value })}
+              id="email"
+              label="Email"
+              className={classes.textField}
+              value={this.state.email}
+              onChange={this.handleChange("email")}
+              margin="normal"
+            />
 
-         <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-        onChange={e => this.setState({ first_name: e.target.value })}
-          id="standard-name"
-          label="Name"
-          className={classes.textField}
-          value={this.state.name}
-          onChange={this.handleChange('name')}
-          margin="normal"
-        />
-        <TextField
-        onChange={e => this.setState({ last_name: e.target.value })}
-          id="standard-lastname"
-          label="Last Name"
-          className={classes.textField}
-          value={this.state.lastname}
-          onChange={this.handleChange('lastname')}
-          margin="normal"
-        />
+            <TextField
+              onChange={e => this.setState({ dob: e.target.value })}
+              id="birthdate"
+              label="Birthday"
+              type="date"
+              defaultValue="2017-05-24"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
 
-        <TextField
-        onChange={e => this.setState({ username: e.target.value })}
-          id="standard-username"
-          label="Username"
-          className={classes.textField}
-          value={this.state.username}
-          onChange={this.handleChange('username')}
-          margin="normal"
-        />
-        <TextField
-        onChange={e => this.setState({ password: e.target.value })}
-          id="standard-password"
-          label="Password"
-          className={classes.textField}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
-        />
-
-
-        <TextField
-        onChange={e => this.setState({ email: e.target.value })}
-          id="email"
-          label="Email"
-          className={classes.textField}
-          value={this.state.email}
-          onChange={this.handleChange('email')}
-          margin="normal"
-        />
-
-        <TextField
-        onChange={e => this.setState({ dob: e.target.value })}
-          id="birthdate"
-          label="Birthday"
-          type="date"
-          defaultValue="2017-05-24"
-          className={classes.textField}
-          InputLabelProps={{
-          shrink: true,
-        }}
-      />
-
-      <Button variant="contained" size="small" className={classes.button}>
-        <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
-        Save
-      </Button>
-      </form>
-
+            <Button variant="contained" size="small" className={classes.button}>
+              <SaveIcon
+                className={classNames(classes.leftIcon, classes.iconSmall)}
+              />
+              Save
+            </Button>
+          </form>
+        </div>
       </div>
-    </div>
-
-
-     
     );
   }
 }
 
 TextFields.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(TextFields);
