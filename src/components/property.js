@@ -34,8 +34,7 @@ class TextFields extends React.Component {
       province: "",
       addr1: "",
       addr2: "",
-      dob: "",
-      email: "",
+      rent: "",
       account_id: localStorage.getItem("account_id"),
       account_type: localStorage.getItem("account_type"),
       session_token: localStorage.getItem("session_token")
@@ -48,6 +47,7 @@ class TextFields extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
+        "X-TOKEN": token
       },
       body: JSON.stringify({
         city,
@@ -65,30 +65,26 @@ class TextFields extends React.Component {
         }
       })
       .then(responseJson => {
-        this.setState({
-          account_id: responseJson.account_id,
-          account_type: responseJson.account_type,
-          session_token: responseJson.session_token
-        });
-        localStorage.setItem("account_id", responseJson.account_id);
-        localStorage.setItem("account_type", responseJson.account_type);
-        localStorage.setItem("session_token", responseJson.session_token);
+        alert("Success");
       })
       .catch(function(err) {
-        alert("ERROR IN LOGIN");
+        alert("ERROR");
         console.log("ERROR IN REQUEST", err);
       });
   }
 
-    state = {
-    name: ""
+  submitForm = e => {
+    e.preventDefault(); //this stops the page from redireting when you hit submit
+    this.profilecreate(
+      this.state.first_name,
+      this.state.last_name,
+      this.state.username,
+      this.state.password,
+      this.state.dob,
+      this.state.email
+    );
   };
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
 
   render() {
     const { classes } = this.props;
@@ -100,18 +96,17 @@ class TextFields extends React.Component {
         <h4 className="center">Fill out form to create Property Listing</h4>
 
 
-      <form className={classes.container} 
+      <form 
             onSubmit={e => {
               this.submitForm(e);
                         }}
-            noValidate
             autoComplete="off"
       >
         <TextField
           id="standard-city"
           label="City"
           className={classes.textField}
-          value={this.state.city}
+          //value={this.state.city}
           onChange={e => this.setState({ city: e.target.value })}
           margin="normal"
         />
@@ -119,7 +114,7 @@ class TextFields extends React.Component {
           id="standard-province"
           label="Province"
           className={classes.textField}
-          value={this.state.province}
+          //value={this.state.province}
           onChange={e => this.setState({ pronvince: e.target.value })}
           margin="normal"
         />
@@ -128,7 +123,7 @@ class TextFields extends React.Component {
           id="standard-addr1"
           label="Address 1"
           className={classes.textField}
-          value={this.state.addr1}
+          //value={this.state.addr1}
           onChange={e => this.setState({ addr1: e.target.value })}
           margin="normal"
         />
@@ -137,7 +132,7 @@ class TextFields extends React.Component {
           id="standard-addr2"
           label="Address 2"
           className={classes.textField}
-          value={this.state.addr2}
+          //value={this.state.addr2}
           onChange={e => this.setState({ addr2: e.target.value })}
           margin="normal"
         />
@@ -145,7 +140,7 @@ class TextFields extends React.Component {
         <TextField
           id="standard-askrent"
           label="Rent Price"
-          value={this.state.askrent}
+          //value={this.state.askrent}
           onChange={e => this.setState({ rent: e.target.value })}
           type="number"
           className={classes.textField}

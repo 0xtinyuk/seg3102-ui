@@ -161,6 +161,7 @@ class TextFields extends React.Component {
               className={classes.submit}
               type="submit"
             >
+            <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
               Create
             </Button>
           </form>
